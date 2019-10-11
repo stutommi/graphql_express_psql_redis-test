@@ -1,0 +1,25 @@
+version: '3.5'
+
+services:
+  back:
+    image: backend
+    build: ./
+    depends_on:
+      - db
+      - redis
+    ports:
+      - 3000:3000
+    container_name: gql_backend
+
+  redis:
+    image: redis:alpine
+    container_name: gql_redis
+
+  db:
+    image: postgres:alpine
+    restart: unless-stopped
+    environment:
+      POSTGRES_PASSWORD: example
+    volumes: 
+      - "./db/data:/var/lib/postgresql/data"
+    container_name: gql_db
