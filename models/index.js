@@ -12,7 +12,7 @@ const db = {
 db.sequelize = sequelize
 const wait = (ms) => new Promise(resolve => setTimeout(resolve, ms))
 
-const syncDb = async (sequelize, tries = 5) => {
+const syncDb = async (tries = 5) => {
   try {
     console.log('authenticating DB')
     await db.sequelize.authenticate()
@@ -23,7 +23,7 @@ const syncDb = async (sequelize, tries = 5) => {
       console.log('could not connect to database')
       process.exit(1)
     }
-    console.log('err:', e.message, ',trying again in 3 seconds,', tries, 'tries left')
+    console.log('err:', e.message, ', trying again in 3 seconds,', tries, 'tries left')
     await wait(3000)
     syncDb(tries - 1)
   }
