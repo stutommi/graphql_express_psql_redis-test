@@ -29,6 +29,6 @@ const syncDb = async (tries = 5) => {
   }
 }
 
-syncDb(sequelize)
+syncDb()
 
 export default db
