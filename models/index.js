@@ -23,7 +23,7 @@ const syncDb = async (sequelize, tries = 5) => {
       console.log('could not connect to database')
       process.exit(1)
     }
-    console.log('err:', e.message, ',trying again in 3 seconds,' tries, 'tries left')
+    console.log('err:', e.message, ',trying again in 3 seconds,', tries, 'tries left')
     await wait(3000)
     syncDb(tries - 1)
   }
